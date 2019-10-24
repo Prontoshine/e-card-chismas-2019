@@ -1,0 +1,321 @@
+body {
+  background-color: #000;
+}
+svg {
+  margin: auto;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+svg g[data-name='logo'] {
+  animation: mymove 5s infinite;
+  transition: 0.3s;
+}
+svg > g,
+svg > path {
+  opacity: 0 !important;
+  transition: 0.3s;
+}
+svg > g[id="background_1_"],
+svg > g[id="switch-off"] {
+  opacity: 1 !important;
+}
+
+svg > g.hide {
+  opacity: 0 !important;
+}
+
+[id="switch"] {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 99;
+  /* opacity: 0; */
+}
+.show {
+  opacity: 1 !important;
+}
+canvas {
+  transition: 0.3s;
+  opacity: 1;
+}
+canvas.hide {
+  opacity: 0;
+}
+/* Falling Effect */
+
+@keyframes snowflakes-fall {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes snowflakes-shake {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(80px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+[id="paper-firework"] {
+  animation-name: snowflakes-fall;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+}
+[id="paper-firework-1"] {
+  animation-name: snowflakes-fall;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  animation-delay: 2s;
+  transform: translateY(-50%);
+}
+[id="paper-firework"] > path,
+[id="paper-firework-1"] > path {
+  animation-name: snowflakes-shake;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+}
+[id="paper-firework"] > path:nth-of-type(0),
+[id="paper-firework-1"] > path:nth-of-type(0) {
+  left: 1%;
+  animation-delay: 0s;
+}
+[id="paper-firework"] > path:nth-of-type(1),
+[id="paper-firework-1"] > path:nth-of-type(1) {
+  left: 10%;
+  animation-delay: 1s;
+}
+[id="paper-firework"] > path:nth-of-type(2),
+[id="paper-firework-1"] > path:nth-of-type(2) {
+  left: 20%;
+  animation-delay: 6s;
+}
+[id="paper-firework"] > path:nth-of-type(3),
+[id="paper-firework-1"] > path:nth-of-type(3) {
+  left: 30%;
+  animation-delay: 4s;
+}
+[id="paper-firework"] > path:nth-of-type(4),
+[id="paper-firework-1"] > path:nth-of-type(4) {
+  left: 40%;
+  animation-delay: 2s;
+}
+[id="paper-firework"] > path:nth-of-type(5),
+[id="paper-firework-1"] > path:nth-of-type(5) {
+  left: 50%;
+  animation-delay: 8s;
+}
+[id="paper-firework"] > path:nth-of-type(6),
+[id="paper-firework-1"] > path:nth-of-type(6) {
+  left: 60%;
+  animation-delay: 6s;
+}
+[id="paper-firework"] > path:nth-of-type(7),
+[id="paper-firework-1"] > path:nth-of-type(7) {
+  left: 70%;
+  animation-delay: 2.5s;
+}
+[id="paper-firework"] > path:nth-of-type(8),
+[id="paper-firework-1"] > path:nth-of-type(8) {
+  left: 80%;
+  animation-delay: 1s;
+}
+[id="paper-firework"] > path:nth-of-type(9),
+[id="paper-firework-1"] > path:nth-of-type(9) {
+  left: 90%;
+  animation-delay: 3s;
+}
+
+/* SVG Style */
+
+.st0 {
+  fill: #4d516e;
+}
+.st1 {
+  fill: #3b3e59;
+}
+.st2 {
+  fill: #636785;
+}
+.st3 {
+  fill: #565a7a;
+}
+.st4 {
+  fill: #617c85;
+}
+.st5 {
+  fill: #292d47;
+}
+.st6 {
+  fill: #4c6973;
+}
+.st7 {
+  fill: #754c29;
+}
+.st8 {
+  fill: #1f6864;
+}
+.st9 {
+  fill: #357a5f;
+}
+.st10 {
+  opacity: 0.15;
+}
+.st11 {
+  fill: #231f20;
+}
+.st12 {
+  fill: #ffe5b0;
+}
+.st13 {
+  fill: #ffcb48;
+}
+.st14 {
+  fill: #c43b72;
+}
+.st15 {
+  fill: #aacbe8;
+}
+.st16 {
+  fill: #ff5e4d;
+}
+.st17 {
+  fill: #fd4f4f;
+}
+.st18 {
+  fill: #ffd89e;
+}
+.st19 {
+  fill: #98b4ef;
+}
+.st20 {
+  fill: #3b2b5b;
+}
+.st21 {
+  fill: #ff97a6;
+}
+.st22 {
+  fill: #30193b;
+}
+.st23 {
+  fill: #d5eaf5;
+}
+.st24 {
+  fill: #c95d77;
+}
+.st25 {
+  fill: #fff1d7;
+}
+.st26 {
+  fill: #ffffff;
+}
+.st27 {
+  fill: #162447;
+}
+.st28 {
+  fill: #00adee;
+}
+.st29 {
+  fill: #ffdc8d;
+}
+.st30 {
+  fill: #7f65c1;
+}
+.st31 {
+  fill: #6850b2;
+}
+.st32 {
+  fill: #c2e1f2;
+}
+.st33 {
+  fill: #295a6e;
+}
+.st34 {
+  fill: #f44437;
+}
+.st35 {
+  fill: #ffa9ba;
+}
+.st36 {
+  fill: #372c49;
+}
+.st37 {
+  fill: #ff9a2e;
+}
+.st38 {
+  fill: #e6e6e6;
+}
+.st39 {
+  fill: url(#Rectangle_5_2_);
+}
+.st40 {
+  fill: #2ecb70;
+}
+.st41 {
+  fill: #e74b3c;
+}
+.st42 {
+  opacity: 0.61;
+  fill: #ffffff;
+  enable-background: new;
+}
+.st43 {
+  opacity: 0.14;
+  enable-background: new;
+}
+.st44 {
+  fill: url(#Rectangle_5_3_);
+}
+.st45 {
+  font-family: 'HelveticaNeue';
+}
+.st46 {
+  font-size: 13.0225px;
+}
+.st47 {
+  opacity: 0.13;
+  fill: #fff794;
+  enable-background: new;
+}
+.st48 {
+  fill: #fcffa8;
+}
+.st49 {
+  font-family: 'HelveticaNeue-Bold';
+}
+.st50 {
+  font-size: 34px;
+}
+.st51 {
+  font-size: 23px;
+}
+.st52 {
+  fill: #3b5998;
+}
+.st53 {
+  fill: #1da1f2;
+}
+.st54 {
+  fill: #dd4b39;
+}
+.st55 {
+  fill: #0077b5;
+}
+.st56 {
+  fill: #595e70;
+}
