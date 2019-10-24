@@ -92,12 +92,18 @@ window.onresize = function () {
   updateSwitch();
 };
 
+
+//Audio Button
+
+var audioButton = document.querySelector('[id="sound-on"]');
+
 document.querySelector('#switch').addEventListener('click', function () {
+  toggleAudio(audioButton);
   document.querySelectorAll('svg g:not([id="switch-off"])').forEach(function (e) {
     e.classList.add('show');
   });
   document.querySelector('canvas').classList.add('hide');
-  document.querySelector('[id="switch-off"]').style;
+  document.querySelector('[id="switch-off"]').style.display = 'none';
 })
 
 updateSwitch();
@@ -111,3 +117,23 @@ function updateSwitch() {
   switchHTML.style.top = (switchSVG.top + window.scrollY - 10) + 'px';
   switchHTML.style.left = (switchSVG.left + window.scrollX - 10) + 'px';
 }
+
+
+var audio = new Audio('audio/Christmas-Interactive-eCard-Loopsound.wav');
+audio.loop = true;
+function toggleAudio(btn) {
+  if (audio.paused) {
+    btn.classList.add('show');
+    audio.play();
+  } else {
+    btn.classList.remove('show');
+    audio.pause();
+  }
+}
+
+document.querySelectorAll('[id*="sound-"]').forEach(function(el){
+  el.addEventListener('click', function(){
+    toggleAudio(audioButton);
+  });
+});
+

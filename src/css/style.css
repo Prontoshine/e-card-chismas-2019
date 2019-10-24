@@ -28,15 +28,16 @@ svg > g.hide {
   opacity: 0 !important;
 }
 
+/* Audio button */
+
+[id*="sound-"] {
+  cursor: pointer;
+}
+
 [id="switch"] {
-  width: 200px;
-  height: 200px;
   position: absolute;
-  right: 0;
-  bottom: 0;
-  background-color: #fff;
+  opacity: 0;
   z-index: 99;
-  /* opacity: 0; */
 }
 .show {
   opacity: 1 !important;
@@ -47,6 +48,7 @@ canvas {
 }
 canvas.hide {
   opacity: 0;
+  pointer-events: none;
 }
 /* Falling Effect */
 
@@ -147,9 +149,9 @@ canvas.hide {
 /* People Move Animation */
 
 [id="people-left"] {
-  animation-name: move;
-  animation-duration: 2s;
-  animation-timing-function: ease;
+  animation-name: turnaround;
+  animation-duration: .5s;
+  animation-timing-function: steps(2, jump-start);
   animation-iteration-count: infinite;
   animation-delay: 2s;
   animation-direction: alternate;
@@ -193,15 +195,13 @@ canvas.hide {
 }
 
 
-@keyframes move {
+@keyframes turnaround {
   0% {
-    transform: scaleX(1);
+    transform: rotateY(0deg);
   }
-  50% {
-    transform: scaleX(-1);
-  }
+
   100% {
-    transform: scaleX(1);
+    transform: rotateY(360deg);
   }
 }
 
