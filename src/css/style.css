@@ -144,6 +144,101 @@ canvas.hide {
   animation-delay: 3s;
 }
 
+/* People Move Animation */
+
+[id="people-left"] {
+  animation-name: move;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-delay: 2s;
+  animation-direction: alternate;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform-style: preserve-3d;
+}
+
+[id="people-center-right"] {
+  animation-name: moveright;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+  animation-direction: alternate;
+  transform-box: fill-box;
+  transform-origin: center;
+
+
+}
+[id="people-center-left"] {
+  animation-name: moveleft;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+  animation-direction: alternate;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+[id="people-right"] {
+  animation-name: jump;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+  animation-direction: alternate;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+
+@keyframes move {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(-1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes moveleft {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+@keyframes moveright {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+@keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-60px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
 /* SVG Style */
 
 .st0 {
