@@ -74,7 +74,7 @@ if (__canvas_DOM.getContext) {
   // setInterval(draw, 80);
 }
 
-__canvas_DOM.addEventListener('mousemove', function(e) {
+__canvas_DOM.addEventListener('mousemove', function (e) {
   if (e.type == 'mousemove') {
     mousePosition.x = e.offsetX;
     mousePosition.y = e.offsetY;
@@ -82,22 +82,34 @@ __canvas_DOM.addEventListener('mousemove', function(e) {
   draw();
 });
 
-window.onresize = function() {
+window.onresize = function () {
   __canvas_DOM.width = window.innerWidth;
   __canvas_DOM.height = window.innerHeight;
   (w = __canvas_DOM.width), (h = __canvas_DOM.height);
   console.log('width: ' + w, ',Height: ' + h);
   draw();
+
+  updateSwitch();
 };
 
-
-document.querySelector('#switch').addEventListener('click', function(){
-	document.querySelectorAll('svg g:not([id="switch-off"])').forEach(function(e){
-		e.classList.add('show');
+document.querySelector('#switch').addEventListener('click', function () {
+  document.querySelectorAll('svg g:not([id="switch-off"])').forEach(function (e) {
+    e.classList.add('show');
   });
   document.querySelector('canvas').classList.add('hide');
   document.querySelector('[id="switch-off"]').style;
 })
 
-var svgSize = document.querySelector('#background_1_');
-console.dir(svgSize.clientWidth);
+updateSwitch();
+
+function updateSwitch() {
+  var switchSVG = document.querySelector('#switch-on').getBoundingClientRect();
+  var switchHTML = document.querySelector('#switch');
+  
+  switchHTML.style.width = switchSVG.width + 'px';
+  switchHTML.style.height = switchSVG.height + 'px';
+  // switchHTML.style.top = switchSVG.top + 'px';
+  // switchHTML.style.left = switchSVG.left + 'px';
+  switchHTML.style.bottom = switchSVG.bottom + 'px';
+  switchHTML.style.right = switchSVG.right + 'px';
+}
