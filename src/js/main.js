@@ -105,11 +105,9 @@ updateSwitch();
 function updateSwitch() {
   var switchSVG = document.querySelector('#switch-on').getBoundingClientRect();
   var switchHTML = document.querySelector('#switch');
-  
+
   switchHTML.style.width = switchSVG.width + 'px';
   switchHTML.style.height = switchSVG.height + 'px';
-  // switchHTML.style.top = switchSVG.top + 'px';
-  // switchHTML.style.left = switchSVG.left + 'px';
-  switchHTML.style.bottom = switchSVG.bottom + 'px';
-  switchHTML.style.right = switchSVG.right + 'px';
+  switchHTML.style.top = (switchSVG.top + window.scrollY - 10) + 'px';
+  switchHTML.style.left = (switchSVG.left + window.scrollX - 10) + 'px';
 }
