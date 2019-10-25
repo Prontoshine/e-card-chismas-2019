@@ -115,7 +115,7 @@ var audioButton = document.querySelector('[id="sound-on"]');
 
 document.querySelector('#switch').addEventListener('click', function () {
   toggleAudio(audioButton);
-  document.querySelectorAll('svg g:not([id="switch-off"])').forEach(function (e) {
+  document.querySelectorAll('svg > g:not([id="switch-off"])').forEach(function (e) {
     e.classList.add('show');
   });
   document.querySelectorAll('svg > path').forEach(function (e) {
