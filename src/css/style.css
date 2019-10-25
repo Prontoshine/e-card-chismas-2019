@@ -311,15 +311,15 @@ canvas.hide {
 
 @keyframes lightleft {
   0% {
-    transform: translateX(0) rotateY(0deg) scale(1);
+    transform: translateX(0) rotateY(0deg);
   }
 
   50% {
-    transform: translateX(-160px) rotateY(0deg) scale(1);
+    transform: translateX(-160px) rotateY(0deg);
   }
 
   100% {
-    transform: translateX(0px) rotateY(180deg) scale(.8);
+    transform: translateX(0px) rotateY(120deg);
   }
 }
 /* @keyframes lightleft {
