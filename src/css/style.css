@@ -34,6 +34,9 @@ svg > g[id="switch-off"] {
 svg > g.hide {
   opacity: 0 !important;
 }
+svg > path.show {
+  opacity: .13 !important;
+}
 
 /* Embed Poppins font */
 .st45,
@@ -194,10 +197,10 @@ canvas.hide {
 
 [id="people-left"] {
   animation-name: turnaround;
-  animation-duration: .5s;
-  animation-timing-function: steps(2, jump-start);
+  animation-duration: 1s;
+  animation-timing-function: steps(2);
   animation-iteration-count: infinite;
-  animation-delay: 2s;
+  animation-delay: 3s;
   animation-direction: alternate;
   transform-box: fill-box;
   transform-origin: center;
@@ -282,6 +285,94 @@ canvas.hide {
     transform: translateY(0px);
   }
 }
+
+
+/* Light Animation */
+
+
+[id="light-left"] {
+  animation-name: lightleft;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-delay: 2s;
+  animation-direction: alternate;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+[id="light-right"] {
+  animation-name: lightright;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-delay: 2s;
+  animation-direction: alternate;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+@keyframes lightleft {
+  0% {
+    transform: translateX(0) rotateY(0deg) scale(1);
+  }
+
+  50% {
+    transform: translateX(-160px) rotateY(0deg) scale(1);
+  }
+
+  100% {
+    transform: translateX(0px) rotateY(180deg) scale(.8);
+  }
+}
+/* @keyframes lightleft {
+  32% {
+    transform: translateX(0px) rotateY(0deg) scale(1);
+  }
+  33% {
+    transform: translateX(-160px) rotateY(0deg) scale(1);
+  }
+  65% {
+    transform: translateX(-160px) rotateY(0deg) scale(1);
+  }
+  66% {
+    transform: translateX(-160px) rotateY(180deg) scale(.8);
+  }
+  99% {
+    transform: translateX(-160px) rotateY(180deg) scale(.8);
+  }
+  100% {
+    transform: translateX(0px) rotateY(180deg) scale(1);
+  }
+} */
+@keyframes lightright {
+  0% {
+    transform: translateX(0px) rotateY(0deg);
+  }
+  50% {
+    transform: translateX(120px) rotateY(0deg);
+  }
+  100% {
+    transform: translateX(0px) rotateY(130deg);
+  }
+}
+/* @keyframes lightright {
+  32% {
+    transform: translateX(0px) rotateY(0deg);
+  }
+  33% {
+    transform: translateX(120px) rotateY(0deg);
+  }
+  65% {
+    transform: translateX(120px) rotateY(0deg);
+  }
+  66% {
+    transform: translateX(120px) rotateY(130deg);
+  }
+  99% {
+    transform: translateX(120px) rotateY(130deg);
+  }
+  100% {
+    transform: translateX(0px) rotateY(130deg);
+  }
+} */
 
 /* SVG Style */
 

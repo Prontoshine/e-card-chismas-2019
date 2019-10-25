@@ -116,6 +116,9 @@ document.querySelector('#switch').addEventListener('click', function () {
   document.querySelectorAll('svg g:not([id="switch-off"])').forEach(function (e) {
     e.classList.add('show');
   });
+  document.querySelectorAll('svg > path').forEach(function (e) {
+    e.classList.add('show');
+  });
   document.querySelector('canvas').classList.add('hide');
   document.querySelector('[id="switch-off"]').style.display = 'none';
   document.querySelector('.front-text').style.display = 'none';
