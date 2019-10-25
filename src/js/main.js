@@ -119,6 +119,7 @@ document.querySelector('#switch').addEventListener('click', function () {
   document.querySelector('canvas').classList.add('hide');
   document.querySelector('[id="switch-off"]').style.display = 'none';
   document.querySelector('.front-text').style.display = 'none';
+  this.style.pointerEvents = 'none';
 })
 
 updateSwitch();
