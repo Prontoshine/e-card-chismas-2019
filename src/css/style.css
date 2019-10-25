@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
+
 body {
   background-color: #000;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 .container {
     position: relative;
+    height: 100vh;
+    overflow: hidden;
 }
 svg {
   margin: auto;
@@ -26,6 +33,43 @@ svg > g[id="switch-off"] {
 
 svg > g.hide {
   opacity: 0 !important;
+}
+
+/* Embed Poppins font */
+.st45,
+.st49 {
+    font-family: 'Poppins', sans-serif !important;
+}
+.st49 {
+    font-weight: 700;
+}
+
+/* Front Text */
+.front-text {
+    position: absolute;
+    color: #fff;
+    text-align: center;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 9999;
+    width: 100%;
+}
+
+.front-title,
+.front-subtitle {
+    color: #FFFEED;
+    font-weight: 400;
+    text-shadow: 0 3px 6px rgba(255, 251, 201, .8);
+}
+
+.front-title {
+    font-size: 34px;
+}
+
+.front-subtitle {
+    font-size: 23px;
 }
 
 /* Audio button */
