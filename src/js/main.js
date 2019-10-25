@@ -82,15 +82,15 @@ __canvas_DOM.addEventListener('mousemove', function (e) {
   draw();
 });
 
-var oriWidth = document.querySelector('.st51').getBoundingClientRect().width;
 var frontTitle = document.querySelector('.front-title');
 var styleTitle = parseFloat(window.getComputedStyle(frontTitle, null).getPropertyValue('font-size'));
 var frontSubTitle = document.querySelector('.front-subtitle');
 var styleSubTitle = parseFloat(window.getComputedStyle(frontSubTitle, null).getPropertyValue('font-size'));
 
 function updateFrontTextSize(el, fontSize) {
-  var newWidth = document.querySelector('.st51').getBoundingClientRect().width;
-  var scale = (newWidth / oriWidth) * fontSize;
+  var newWidth = document.querySelector('#background_1_').getBoundingClientRect().width;
+  // var newWidth = document.querySelector('.st51').getBoundingClientRect().width;
+  var scale = (newWidth / 1366) * fontSize;
   el.style.fontSize = scale + 'px';
 }
 
@@ -105,6 +105,8 @@ window.onresize = function () {
   updateFrontTextSize(frontTitle, styleTitle);
   updateFrontTextSize(frontSubTitle, styleSubTitle);
 };
+updateFrontTextSize(frontTitle, styleTitle);
+updateFrontTextSize(frontSubTitle, styleSubTitle);
 
 
 //Audio Button
