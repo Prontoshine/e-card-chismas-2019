@@ -138,6 +138,17 @@ window.addEventListener('resize', function(event) {
   updateFrontTextSize(frontSubTitle, styleSubTitle);
 });
 
+/**
+ * Fix issue for Chrome on iOS.
+ */
+window.addEventListener('orientationchange', function (event) {
+  updateCanvas(event);
+  setShareButtonsArea()
+  setSwitchArea();
+  updateFrontTextSize(frontTitle, styleTitle);
+  updateFrontTextSize(frontSubTitle, styleSubTitle);
+})
+
 function updateCanvas(event) {
   __canvas_DOM.width = event.target.innerWidth;
   __canvas_DOM.height = event.target.innerHeight;
