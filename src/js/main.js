@@ -31,11 +31,6 @@ if (__canvas_DOM.getContext) {
     y: centerPoint.y,
   };
 
-  var flashlight_size = {
-    center: h / 10,
-    outside: h / 5,
-  };
-
   var gradient_color = {
     first: 'rgba(0,0,0,0.8)',
     second: 'rgba(0,0,0,0)',
@@ -46,6 +41,12 @@ if (__canvas_DOM.getContext) {
   function draw() {
     c.save();
     c.clearRect(0, 0, w, h);
+
+    var flashlight_size = {
+      center: h / 10,
+      outside: h / 5,
+    };
+
     /*flashlight color*/
     gradient = c.createRadialGradient(
       mousePosition.x,
@@ -137,10 +138,6 @@ window.addEventListener('resize', function(event) {
   updateFrontTextSize(frontSubTitle, styleSubTitle);
 });
 
-window.addEventListener('orientationchange', function(event) {
-  updateCanvas(event);
-})
-
 function updateCanvas(event) {
   __canvas_DOM.width = event.target.innerWidth;
   __canvas_DOM.height = event.target.innerHeight;
@@ -155,6 +152,9 @@ var frontTitle = document.querySelector('.front-title');
 var styleTitle = parseFloat(window.getComputedStyle(frontTitle, null).getPropertyValue('font-size'));
 var frontSubTitle = document.querySelector('.front-subtitle');
 var styleSubTitle = parseFloat(window.getComputedStyle(frontSubTitle, null).getPropertyValue('font-size'));
+
+updateFrontTextSize(frontTitle, styleTitle);
+updateFrontTextSize(frontSubTitle, styleSubTitle);
 
 function updateFrontTextSize(el, fontSize) {
   var newWidth = document.querySelector('#background_1_').getBoundingClientRect().width;
