@@ -70,17 +70,22 @@ if (__canvas_DOM.getContext) {
   }
 
   draw();
-  // timer
-  // setInterval(draw, 80);
 }
 
-__canvas_DOM.addEventListener('mousemove', function (e) {
-  if (e.type == 'mousemove') {
+function handleFlashlightMove(e) {
+  if (e.type === 'mousemove') {
     mousePosition.x = e.offsetX;
     mousePosition.y = e.offsetY;
+  } else if (e.type === 'touchmove') {
+    e.preventDefault();
+    mousePosition.x = e.touches[0].clientX;
+    mousePosition.y = e.touches[0].clientY;
   }
   draw();
-});
+}
+
+__canvas_DOM.addEventListener('mousemove', handleFlashlightMove);
+__canvas_DOM.addEventListener('touchmove', handleFlashlightMove, false);
 
 var frontTitle = document.querySelector('.front-title');
 var styleTitle = parseFloat(window.getComputedStyle(frontTitle, null).getPropertyValue('font-size'));
@@ -107,6 +112,13 @@ window.onresize = function () {
 };
 updateFrontTextSize(frontTitle, styleTitle);
 updateFrontTextSize(frontSubTitle, styleSubTitle);
+
+window.onorientationchange = function(ev) {
+  __canvas_DOM.width = window.innerWidth;
+  __canvas_DOM.height = window.innerHeight;
+  (w = __canvas_DOM.width), (h = __canvas_DOM.height);
+  draw();
+}
 
 
 //Audio Button
