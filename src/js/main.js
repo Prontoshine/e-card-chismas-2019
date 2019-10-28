@@ -72,6 +72,12 @@ if (__canvas_DOM.getContext) {
   draw();
 }
 
+/**
+ * Handle flashlight move for desktop and mobile.
+ */
+__canvas_DOM.addEventListener('mousemove', handleFlashlightMove);
+__canvas_DOM.addEventListener('touchmove', handleFlashlightMove, false);
+
 function handleFlashlightMove(e) {
   if (e.type === 'mousemove') {
     mousePosition.x = e.offsetX;
@@ -84,91 +90,12 @@ function handleFlashlightMove(e) {
   draw();
 }
 
-__canvas_DOM.addEventListener('mousemove', handleFlashlightMove);
-__canvas_DOM.addEventListener('touchmove', handleFlashlightMove, false);
-
-var frontTitle = document.querySelector('.front-title');
-var styleTitle = parseFloat(window.getComputedStyle(frontTitle, null).getPropertyValue('font-size'));
-var frontSubTitle = document.querySelector('.front-subtitle');
-var styleSubTitle = parseFloat(window.getComputedStyle(frontSubTitle, null).getPropertyValue('font-size'));
-
-function updateFrontTextSize(el, fontSize) {
-  var newWidth = document.querySelector('#background_1_').getBoundingClientRect().width;
-  // var newWidth = document.querySelector('.st51').getBoundingClientRect().width;
-  var scale = (newWidth / 1366) * fontSize;
-  el.style.fontSize = scale + 'px';
-}
-
-window.onresize = function () {
-  __canvas_DOM.width = window.innerWidth;
-  __canvas_DOM.height = window.innerHeight;
-  (w = __canvas_DOM.width), (h = __canvas_DOM.height);
-  console.log('width: ' + w, ',Height: ' + h);
-  draw();
-
-  updateSwitch();
-  updateFrontTextSize(frontTitle, styleTitle);
-  updateFrontTextSize(frontSubTitle, styleSubTitle);
-};
-updateFrontTextSize(frontTitle, styleTitle);
-updateFrontTextSize(frontSubTitle, styleSubTitle);
-
-window.onorientationchange = function(ev) {
-  __canvas_DOM.width = window.innerWidth;
-  __canvas_DOM.height = window.innerHeight;
-  (w = __canvas_DOM.width), (h = __canvas_DOM.height);
-  draw();
-}
-
-
-//Audio Button
-
-var audioButton = document.querySelector('[id="sound-on"]');
-
-document.querySelector('#switch').addEventListener('click', function () {
-  toggleAudio(audioButton);
-  document.querySelectorAll('svg > g:not([id="switch-off"])').forEach(function (e) {
-    e.classList.add('show');
-  });
-  document.querySelectorAll('svg > path').forEach(function (e) {
-    e.classList.add('show');
-  });
-  document.querySelector('canvas').classList.add('hide');
-  document.querySelector('[id="switch-off"]').style.display = 'none';
-  document.querySelector('.front-text').style.display = 'none';
-  this.style.pointerEvents = 'none';
-})
-
-updateSwitch();
-
-function updateSwitch() {
-  var switchSVG = document.querySelector('#switch-on').getBoundingClientRect();
-  var switchHTML = document.querySelector('#switch');
-
-  switchHTML.style.width = switchSVG.width + 'px';
-  switchHTML.style.height = switchSVG.height + 'px';
-  switchHTML.style.top = (switchSVG.top + window.scrollY - 10) + 'px';
-  switchHTML.style.left = (switchSVG.left + window.scrollX - 10) + 'px';
-}
-
-
-var audio = new Audio('audio/Christmas-Interactive-eCard-Loopsound.wav');
-audio.loop = true;
-function toggleAudio(btn) {
-  if (audio.paused) {
-    btn.classList.add('show');
-    audio.play();
-  } else {
-    btn.classList.remove('show');
-    audio.pause();
-  }
-}
-
-document.querySelectorAll('[id*="sound-"]').forEach(function(el){
-  el.addEventListener('click', function(){
-    toggleAudio(audioButton);
-  });
-});
+/**
+ * Force fullscreen on mobile devices.
+ */
+__canvas_DOM.addEventListener('touchstart', openFullscreen, false);
+__canvas_DOM.addEventListener('touchend', openFullscreen, false);
+__canvas_DOM.addEventListener('touchcancel', openFullscreen, false);
 
 /* Get the documentElement (<html>) to display the page in fullscreen */
 var elem = document.documentElement;
@@ -198,3 +125,88 @@ function closeFullscreen() {
     document.msExitFullscreen();
   }
 }
+
+/**
+ * Handle element when resize and change orientation.
+ */
+window.addEventListener('resize', function(event) {
+  updateCanvas(event);
+
+  setSwitchArea();
+  updateFrontTextSize(frontTitle, styleTitle);
+  updateFrontTextSize(frontSubTitle, styleSubTitle);
+});
+
+window.addEventListener('orientationchange', function(event) {
+  updateCanvas(event);
+})
+
+function updateCanvas(event) {
+  __canvas_DOM.width = event.target.innerWidth;
+  __canvas_DOM.height = event.target.innerHeight;
+  (w = __canvas_DOM.width), (h = __canvas_DOM.height);
+  draw();
+}
+
+/**
+ * Update font-size relative to canvas size.
+ */
+var frontTitle = document.querySelector('.front-title');
+var styleTitle = parseFloat(window.getComputedStyle(frontTitle, null).getPropertyValue('font-size'));
+var frontSubTitle = document.querySelector('.front-subtitle');
+var styleSubTitle = parseFloat(window.getComputedStyle(frontSubTitle, null).getPropertyValue('font-size'));
+
+function updateFrontTextSize(el, fontSize) {
+  var newWidth = document.querySelector('#background_1_').getBoundingClientRect().width;
+  var scale = (newWidth / 1366) * fontSize;
+  el.style.fontSize = scale + 'px';
+}
+
+/**
+ * Switch
+ */
+setSwitchArea();
+
+document.querySelector('#switch').addEventListener('click', function () {
+  toggleAudio(audioButton);
+  document.querySelectorAll('svg > g:not([id="switch-off"]), svg > path').forEach(function (e) {
+    e.classList.add('show');
+  });
+  document.querySelector('canvas').classList.add('hide');
+  document.querySelector('[id="switch-off"]').style.display = 'none';
+  document.querySelector('.front-text').style.display = 'none';
+  this.style.pointerEvents = 'none';
+})
+
+function setSwitchArea() {
+  var switchSVG = document.querySelector('#switch-on').getBoundingClientRect();
+  var switchHTML = document.querySelector('#switch');
+
+  switchHTML.style.width = switchSVG.width + 'px';
+  switchHTML.style.height = switchSVG.height + 'px';
+  switchHTML.style.top = (switchSVG.top + window.scrollY - 10) + 'px';
+  switchHTML.style.left = (switchSVG.left + window.scrollX - 10) + 'px';
+}
+
+/**
+ * Audio
+ */
+var audioButton = document.querySelector('[id="sound-on"]');
+
+var audio = new Audio('audio/Christmas-Interactive-eCard-Loopsound.wav');
+audio.loop = true;
+function toggleAudio(btn) {
+  if (audio.paused) {
+    btn.classList.add('show');
+    audio.play();
+  } else {
+    btn.classList.remove('show');
+    audio.pause();
+  }
+}
+
+document.querySelectorAll('[id*="sound-"]').forEach(function(el){
+  el.addEventListener('click', function(){
+    toggleAudio(audioButton);
+  });
+});
