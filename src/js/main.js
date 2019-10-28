@@ -131,7 +131,7 @@ function closeFullscreen() {
  */
 window.addEventListener('resize', function(event) {
   updateCanvas(event);
-
+  setShareButtonsArea()
   setSwitchArea();
   updateFrontTextSize(frontTitle, styleTitle);
   updateFrontTextSize(frontSubTitle, styleSubTitle);
@@ -175,6 +175,7 @@ document.querySelector('#switch').addEventListener('click', function () {
   document.querySelector('canvas').classList.add('hide');
   document.querySelector('[id="switch-off"]').style.display = 'none';
   document.querySelector('.front-text').style.display = 'none';
+  document.querySelector('.share-container').classList.add('show');
   this.style.pointerEvents = 'none';
 })
 
@@ -187,6 +188,21 @@ function setSwitchArea() {
   switchHTML.style.top = (switchSVG.top + window.scrollY - 10) + 'px';
   switchHTML.style.left = (switchSVG.left + window.scrollX - 10) + 'px';
 }
+
+/**
+ * Share Container
+ */
+
+setShareButtonsArea();
+
+function setShareButtonsArea() {
+  var bgSVG = document.querySelector('#background_1_').getBoundingClientRect();
+  var shareContainer = document.querySelector('.share-container');
+
+  shareContainer.style.bottom = (bgSVG.top + window.scrollY + 20) + 'px';
+  shareContainer.style.left = (bgSVG.left + window.scrollX + 20) + 'px';
+}
+
 
 /**
  * Audio
