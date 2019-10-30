@@ -178,17 +178,31 @@ function updateFrontTextSize(el, fontSize) {
  */
 setSwitchArea();
 
+var switchOn = false;
+
 document.querySelector('#switch').addEventListener('click', function () {
-  toggleAudio(audioButton);
-  document.querySelectorAll('svg > g:not([id="switch-off"]), svg > path').forEach(function (e) {
-    e.classList.add('show');
-  });
-  document.querySelector('canvas').classList.add('hide');
-  document.querySelector('[id="switch-off"]').style.display = 'none';
-  document.querySelector('.front-text').style.display = 'none';
-  document.querySelector('.share-container').classList.add('show');
-  this.style.pointerEvents = 'none';
-})
+  if (!switchOn) {
+    toggleAudio(audioButton);
+    document.querySelectorAll('svg > g:not([id="switch-off"]), svg > path').forEach(function (e) {
+      e.classList.add('show');
+    });
+    document.querySelector('canvas').classList.add('hide');
+    document.querySelector('[id="switch-off"]').style.display = 'none';
+    document.querySelector('.front-text').style.display = 'none';
+    document.querySelector('.share-container').classList.add('show');
+    switchOn = true;
+  } else {
+    toggleAudio(audioButton, true);
+    document.querySelectorAll('svg > g:not([id="switch-off"]), svg > path').forEach(function (e) {
+      e.classList.remove('show');
+    });
+    document.querySelector('canvas').classList.remove('hide');
+    document.querySelector('[id="switch-off"]').style.display = 'block';
+    document.querySelector('.front-text').style.display = 'block';
+    document.querySelector('.share-container').classList.remove('show');
+    switchOn = false;
+  }
+});
 
 function setSwitchArea() {
   var switchSVG = document.querySelector('#switch-on').getBoundingClientRect();
@@ -222,12 +236,16 @@ var audioButton = document.querySelector('[id="sound-on"]');
 
 var audio = new Audio('audio/Christmas-Interactive-eCard-Loopsound.wav');
 audio.loop = true;
-function toggleAudio(btn) {
-  if (audio.paused) {
-    btn.classList.add('show');
-    audio.play();
+function toggleAudio(btn, muted) {
+  if (!muted) {
+    if (audio.paused) {
+      btn.classList.add('show');
+      audio.play();
+    } else {
+      btn.classList.remove('show');
+      audio.pause();
+    }
   } else {
-    btn.classList.remove('show');
     audio.pause();
   }
 }
