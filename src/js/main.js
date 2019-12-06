@@ -234,7 +234,7 @@ function setShareButtonsArea() {
  */
 var audioButton = document.querySelector('[id="sound-on"]');
 
-var audio = new Audio('audio/Christmas-Interactive-eCard-Loopsound.wav');
+var audio = new Audio('audio/christmas-cheer.wav');
 audio.loop = true;
 function toggleAudio(btn, muted) {
   if (!muted) {
